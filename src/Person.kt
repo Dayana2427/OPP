@@ -1,10 +1,10 @@
 class Person  {
-    var name: String = ""
-    var age: Int = 0
-    var height = 0F
-    var weight = 0
+    val name: String
+    val age: Int
+    val height: Float
+    val weight: Int
 
-    fun init (name: String, age: Int, height: Float, weight: Int) {
+    constructor(name: String, age: Int, height: Float, weight: Int) {
         this.name = name
         this.age = age
         this.height = height
@@ -14,7 +14,6 @@ class Person  {
     fun printInfo () {
         println("Nombre: $name - Edad: $age - Altura: $height - Peso: $weight")
     }
-
 
     fun sayHello () {
         println("Hello! My name is ${this.name}")
