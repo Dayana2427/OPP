@@ -1,7 +1,9 @@
+package corporation
+
 class Director(
-    val name: String,
-    val age: Int
-) {
+    name: String,
+    age: Int
+): Worker(name = name, age = age) {
     fun takeCoffe(assistant: Assistant){
         val drinkName: String = assistant.bringCoffe()
         print("Gracias ${assistant.name}, el $drinkName esta excelente")

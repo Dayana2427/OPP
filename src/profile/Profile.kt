@@ -1,3 +1,5 @@
+package profile
+
 fun main() {
     print("Ingrese su nombre 1: ")
     val name =  readln()

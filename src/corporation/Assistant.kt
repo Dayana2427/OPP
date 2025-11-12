@@ -1,6 +1,9 @@
+package corporation
+
 class Assistant(
-    val name: String
-) {
+    name: String,
+    age: Int
+): Worker(name = name, age = age) {
 
     fun bringCoffe (drinkName: String = "Capuccino", count: Int = 1): String {
         repeat(count) {
@@ -15,3 +18,4 @@ class Assistant(
         return "espresso"
     }
 }
+
