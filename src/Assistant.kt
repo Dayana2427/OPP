@@ -1,10 +1,9 @@
-class Assistant {
-    val name = "Julia"
-    val age = 23
+class Assistant(
+    val name: String
+) {
 
-
-    fun bringCoffe (drinkName: String, count: Int) {
-        repeat(5) {
+    fun bringCoffe (drinkName: String = "Capuccino", count: Int = 1): String {
+        repeat(count) {
             println("Se levanta de su escritorio")
             println("Va hasta la cafetería")
             println("Toma un recipiente")
@@ -13,6 +12,6 @@ class Assistant {
             println("Lleva el cafe a su jefe")
             println("Se sienta")
         }
-
+        return "espresso"
     }
 }

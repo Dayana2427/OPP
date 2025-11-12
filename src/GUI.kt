@@ -1,4 +1,4 @@
 fun main() {
-    val rectangle = Rectangle(width = 10, height = 4)
+    val rectangle = Rectangle(size = 5)
     rectangle.draw()
 }
