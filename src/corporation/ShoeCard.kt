@@ -6,10 +6,8 @@ class ShoeCard(
     price: Int,
     val size: Float
 ): ProductCard(name = name, brand = brand, price = price) {
-
     override fun printInfo() {
         super.printInfo()
         print("Talla: $size")
     }
-
 }
