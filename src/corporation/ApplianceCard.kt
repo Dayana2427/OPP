@@ -11,4 +11,6 @@ class ApplianceCard(
         super.printInfo()
         print("Vatios: $vatios")
     }
+
+
 }

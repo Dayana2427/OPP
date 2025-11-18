@@ -11,4 +11,6 @@ class FoodCard (
         super.printInfo()
         print("Calorias: $caloric")
     }
+
+
 }
