@@ -5,7 +5,7 @@ class FoodCard (
     brand: String,
     price: Int,
     val caloric: Int
-): ProductCard(name = name, brand = brand, price = price) {
+): ProductCard(name = name, brand = brand, price = price, ProductType.FOOD) {
     override fun printInfo() {
         super.printInfo()
         print("Calorias: $caloric")
