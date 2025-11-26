@@ -5,6 +5,10 @@ class Assistant(
     age: Int
 ): Worker(name = name, age = age) {
 
+    override fun work() {
+        println("Sirvo cafe")
+    }
+
     fun bringCoffe (drinkName: String = "Capuccino", count: Int = 1): String {
         repeat(count) {
             println("Se levanta de su escritorio")

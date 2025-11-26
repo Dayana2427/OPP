@@ -6,6 +6,11 @@ class Consultant (
     name: String,
     age: Int = 0
 ): Worker(name = name, age = age){
+
+    override fun work() {
+        println("Atiendo clientes")
+    }
+
     fun hello (){
         print("¡Hola! Mi nombre es $name.")
         if(age > 0){
