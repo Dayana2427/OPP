@@ -1,9 +1,10 @@
 package corporation
 
 class Assistant(
+    id: Int,
     name: String,
     age: Int
-): Worker(name = name, age = age) {
+): Worker(id = id, name = name, age = age, position = Position.ASSISTANT) {
 
     override fun work() {
         println("Sirvo cafe")
