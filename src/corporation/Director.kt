@@ -10,6 +10,10 @@ class Director(
         println("Bebo cafe")
     }
 
+    fun getCleanerToCleanUp(cleaner: Cleaner){
+        cleaner.clean()
+    }
+
     override fun buyThings() {
         println("Mi posición es director. Estoy haciendo compras")
     }
