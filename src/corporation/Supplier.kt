@@ -1,0 +1,4 @@
+package corporation
+
+interface Supplier {
+}

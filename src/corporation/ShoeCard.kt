@@ -7,7 +7,6 @@ class ShoeCard(
     val size: Float
 ): ProductCard(name = name, brand = brand, price = price, ProductType.SHOE) {
     override fun printInfo() {
-        super.printInfo()
-        print("Talla: $size")
+        println("Nombre: $name Marca: $brand Precio: $price Tipo de producto: ${productType.title} Talla: $size \n")
     }
 }
