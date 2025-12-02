@@ -6,10 +6,23 @@ class Consultant (
     id: Int,
     name: String,
     age: Int = 0
-): Worker(id = id, name = name, age = age, position = Position.CONSULTANT){
+): Worker(id = id, name = name, age = age, position = Position.CONSULTANT), Cleaner{
 
     override fun work() {
-        println("Atiendo clientes")
+        serveCustomers()
+    }
+
+    override fun clean() {
+        println("Mi posición es consultor. Estoy limpiando el lugar de trabajo...")
+    }
+
+    fun serveCustomers (): Int{
+        val conteo = Random.nextInt(0, 100)
+        repeat(conteo){
+            print("El cliente ha sido atendido... \n")
+        }
+        println()
+        return conteo
     }
 
     fun hello (){
@@ -17,13 +30,5 @@ class Consultant (
         if(age > 0){
             print("Tengo $age años. \n")
         }
-    }
-
-    fun serveCustomers (): Int{
-        val conteo = Random.Default.nextInt(0, 100)
-        repeat(conteo){
-            print("El cliente ha sido atendido... \n")
-        }
-        return conteo
     }
 }

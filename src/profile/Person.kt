@@ -1,17 +1,11 @@
 package profile
 
-class Person  {
-    val name: String
-    val age: Int
-    val height: Float
-    val weight: Int
-
-    constructor(name: String, age: Int, height: Float, weight: Int) {
-        this.name = name
-        this.age = age
-        this.height = height
-        this.weight = weight
-    }
+class Person(
+    private  val name: String,
+    private  val age: Int,
+    private  val height: Float,
+    private  val weight: Int
+) {
 
     fun printInfo () {
         println("Nombre: $name - Edad: $age - Altura: $height - Peso: $weight")
