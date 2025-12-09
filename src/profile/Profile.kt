@@ -10,6 +10,12 @@ fun main() {
     print("Ingrese su peso 1: ")
     val weight = readln().toInt()
     val person = Person(name = name, age = age, height = height, weight = weight)
+
+    person.age = age
+
     person.printInfo()
+
+    person.age = 0
+
     person.sayHello()
 }
