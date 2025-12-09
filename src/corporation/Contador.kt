@@ -5,8 +5,15 @@ import java.io.File
 class Contador (
     id: Int,
     name: String,
-    age: Int
-): Worker(id, name, age, Position.ACCOUNTANT), Cleaner, Supplier {
+    age: Int,
+    salary: Int
+): Worker(
+    id,
+    name,
+    age,
+    salary,
+    Position.ACCOUNTANT
+), Cleaner, Supplier {
 
     private val fileProductCards = File("product_card.txt")
     private val fileWorkers = File("workers.txt")
@@ -50,7 +57,7 @@ class Contador (
         fileWorkers.writeText("")
         for (employee in employees){
             if (employee.id == id){
-                employee.salary = salary
+                employee.setSalary(salary)
             }
             saveWorkerToFile(employee)
         }
@@ -78,12 +85,11 @@ class Contador (
         print("Ingrese el salario: ")
         val salary = readln().toInt()
         val worker = when(position){
-            Position.DIRECTOR -> Director(id, name, age)
-            Position.ACCOUNTANT -> Contador(id, name, age)
-            Position.ASSISTANT -> Assistant(id, name, age)
-            Position.CONSULTANT -> Consultant(id, name, age)
+            Position.DIRECTOR -> Director(id, name, age, salary)
+            Position.ACCOUNTANT -> Contador(id, name, age, salary)
+            Position.ASSISTANT -> Assistant(id, name, age, salary)
+            Position.CONSULTANT -> Consultant(id, name, age, salary)
         }
-        worker.salary = salary
         saveWorkerToFile(worker)
     }
 
@@ -126,19 +132,18 @@ class Contador (
             val positionAsText = properties.last()
             val position = Position.valueOf(positionAsText)
             val worker = when (position){
-                Position.DIRECTOR -> Director(id, name, age)
-                Position.ACCOUNTANT -> Contador(id, name, age)
-                Position.ASSISTANT -> Assistant(id, name, age)
-                Position.CONSULTANT -> Consultant(id, name, age)
+                Position.DIRECTOR -> Director(id, name, age, salary)
+                Position.ACCOUNTANT -> Contador(id, name, age, salary)
+                Position.ASSISTANT -> Assistant(id, name, age, salary)
+                Position.CONSULTANT -> Consultant(id, name, age, salary)
             }
-            worker.salary = salary
             employees.add(worker)
         }
         return employees
     }
 
     private fun saveWorkerToFile(worker: Worker){
-        fileWorkers.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.salary}%${worker.position}\n")
+        fileWorkers.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}\n")
     }
 
     private fun removeProductCard(){

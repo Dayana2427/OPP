@@ -2,10 +2,15 @@ package profile
 
 class Person(
     private val name: String,
+    var lastName: String,
     private val height: Float,
     private val weight: Int,
     age: Int
 ) {
+
+    val fullName : String
+        get() = "$name $lastName\n"
+
     var age = 0
         set(value){
             if (value > field){
