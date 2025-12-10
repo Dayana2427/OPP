@@ -15,8 +15,8 @@ class Contador (
     Position.ACCOUNTANT
 ), Cleaner, Supplier {
 
-    private val workersRepository = WorkersRepository()
-    private val cardsRepository = CardsRepository()
+    private val workersRepository = WorkersRepository
+    private val cardsRepository = CardsRepository
 
     override fun clean() {
         println("Mi posición es contador. Estoy limpiando el lugar de trabajo...")
@@ -36,7 +36,10 @@ class Contador (
             val operationIndex = readln().toInt()
             val codeTypes = codeType[operationIndex]
             when(codeTypes){
-                CodeType.EXIT -> break
+                CodeType.EXIT -> {
+                    workersRepository.saveChanges()
+                    break
+                }
                 CodeType.ENTER_PRODUCT -> registerNewItem()
                 CodeType.SHOW_ALL_ITEMS -> showAllItems()
                 CodeType.REMOVE_PRODUCT_CARD -> removeProductCard()
@@ -93,7 +96,7 @@ class Contador (
     }
 
     private fun showAllEmployees(){
-        val employees = workersRepository.loadAllEmployees()
+        val employees = workersRepository.workers
         for (employee in employees){
             employee.printInfo()
         }
@@ -106,7 +109,7 @@ class Contador (
     }
 
     private fun showAllItems(){
-        val cards = cardsRepository. loadAllCards()
+        val cards = cardsRepository.productCards
         for (card in cards){
             card.printInfo()
         }

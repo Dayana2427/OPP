@@ -2,29 +2,25 @@ package corporation
 
 import java.io.File
 
-class CardsRepository {
+object CardsRepository {
 
     private val fileProductCards = File("product_card.txt")
+    val productCards = loadAllCards()
 
     fun registerNewItem(productCard: ProductCard){
-        saveProductCardToFile(productCard)
+        saveChanges()
     }
 
     fun removeProductCard(name: String){
-        val cards: MutableList<ProductCard> = loadAllCards()
-        for (card in cards){
+        for (card in productCards){
             if(card.name == name){
-                cards.remove(card)
+                productCards.remove(card)
                 break
             }
         }
-        fileProductCards.writeText("")
-        for (card in cards){
-            saveProductCardToFile((card))
-        }
     }
 
-    fun loadAllCards(): MutableList<ProductCard> {
+    private fun loadAllCards(): MutableList<ProductCard> {
         val cards: MutableList<ProductCard> = mutableListOf<ProductCard>()
 
         if (!fileProductCards.exists()) fileProductCards.createNewFile()
@@ -62,24 +58,28 @@ class CardsRepository {
         return cards
     }
 
-    private fun saveProductCardToFile(productCard: ProductCard){
-        fileProductCards.appendText("${productCard.name}%${productCard.brand}%${productCard.price}%")
-        when (productCard) {
-            is FoodCard -> {
-                val caloric = productCard.caloric
-                fileProductCards.appendText("$caloric%")
-            }
+    fun saveChanges () {
+        val content = StringBuilder()
+        for (productCard in productCards){
+            content.append("${productCard.name}%${productCard.brand}%${productCard.price}%")
+            when (productCard) {
+                is FoodCard -> {
+                    val caloric = productCard.caloric
+                    content.append("$caloric%")
+                }
 
-            is ApplianceCard -> {
-                val vatios = productCard.vatios
-                fileProductCards.appendText("$vatios%")
-            }
+                is ApplianceCard -> {
+                    val vatios = productCard.vatios
+                    content.append("$vatios%")
+                }
 
-            is ShoeCard -> {
-                val size = productCard.size
-                fileProductCards.appendText("$size%")
+                is ShoeCard -> {
+                    val size = productCard.size
+                    content.append("$size%")
+                }
             }
+            content.append("${productCard.productType}")
         }
-        fileProductCards.appendText("${productCard.productType}")
+        fileProductCards.writeText(content.toString())
     }
 }

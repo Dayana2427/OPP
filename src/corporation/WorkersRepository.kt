@@ -2,22 +2,20 @@ package corporation
 
 import java.io.File
 
-class WorkersRepository {
+object WorkersRepository {
 
     private val fileWorkers = File("workers.txt")
+    val workers = loadAllEmployees()
 
     fun registerNewEmployee(worker: Worker){
-        saveWorkerToFile(worker)
+        workers.add(worker)
     }
 
     fun changeSalary(id: Int, salary: Int){
-        val employees = loadAllEmployees()
-        fileWorkers.writeText("")
-        for (employee in employees){
-            if (employee.id == id){
-                employee.setSalary(salary)
+        for (worker in workers){
+            if (worker.id == id){
+                worker.setSalary(salary)
             }
-            saveWorkerToFile(employee)
         }
     }
 
@@ -25,20 +23,28 @@ class WorkersRepository {
         fileWorkers.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}\n")
     }
 
+    fun saveChanges (){
+        var content = StringBuilder()
+        for (worker in workers){
+            content.append("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}\n")
+        }
+        fileWorkers.writeText(content.toString())
+    }
+
     fun fireEmployee(id: Int){
-        val employees = loadAllEmployees()
-        fileWorkers.writeText("")
-        for (employee in employees){
-            if (employee.id != id){
-                saveWorkerToFile(employee)
+        for (worker in workers){
+            if (worker.id == id){
+                workers.remove(worker)
+                break
             }
         }
     }
 
-    fun loadAllEmployees(): MutableList<Worker>{
+    private fun loadAllEmployees(): MutableList<Worker>{
+        println("loadAllEmployees")
         val employees = mutableListOf<Worker>()
 
-        if (!fileWorkers.exists()) fileWorkers.createNewFile()
+         if (!fileWorkers.exists()) fileWorkers.createNewFile()
 
         val content = fileWorkers.readText().trim()
 
