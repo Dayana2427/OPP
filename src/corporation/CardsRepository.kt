@@ -5,16 +5,18 @@ import java.io.File
 object CardsRepository {
 
     private val fileProductCards = File("product_card.txt")
-    val productCards = loadAllCards()
+    private val _productCars = loadAllCards()
+    val productCards
+        get() = _productCars.toList()
 
     fun registerNewItem(productCard: ProductCard){
-        saveChanges()
+        _productCars.add(productCard)
     }
 
     fun removeProductCard(name: String){
-        for (card in productCards){
+        for (card in _productCars){
             if(card.name == name){
-                productCards.remove(card)
+                _productCars.remove(card)
                 break
             }
         }
@@ -60,7 +62,7 @@ object CardsRepository {
 
     fun saveChanges () {
         val content = StringBuilder()
-        for (productCard in productCards){
+        for (productCard in _productCars){
             content.append("${productCard.name}%${productCard.brand}%${productCard.price}%")
             when (productCard) {
                 is FoodCard -> {
