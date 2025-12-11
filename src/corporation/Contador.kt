@@ -47,8 +47,17 @@ class Contador (
                 CodeType.FIRE_EMPLOYEE -> fireEmployee()
                 CodeType.SHOW_ALL_EMPLOYEES -> showAllEmployees()
                 CodeType.CHANGE_SALARY -> changeSalary()
+                CodeType.CHANGE_AGE -> changeAge()
             }
         }
+    }
+
+    private fun changeAge(){
+        print("Ingrese el ID del empleado para cambiar la edad: ")
+        val id = readln().toInt()
+        print("Ingrese la nueva edad: ")
+        val age = readln().toInt()
+        workersRepository.changeAge(id, age)
     }
 
     private fun changeSalary(){
@@ -87,6 +96,10 @@ class Contador (
             Position.CONSULTANT -> Consultant(id, name, age, salary)
         }
         workersRepository.registerNewEmployee(worker)
+    }
+
+    override fun copy(salary: Int, age: Int): Contador {
+        return Contador(this.id, this.name, age, salary)
     }
 
     private fun fireEmployee(){

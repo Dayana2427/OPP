@@ -13,6 +13,10 @@ class Director(
     salary = salary
 ), Supplier {
 
+    override fun copy(salary: Int, age: Int): Director {
+        return Director(this.id, this.name, age, salary)
+    }
+
     override fun work() {
         println("Bebo cafe")
     }
