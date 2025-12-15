@@ -1,10 +1,10 @@
 package corporation
 
-class Assistant(
-    id: Int,
-    name: String,
-    age: Int,
-    salary: Int
+data class Assistant(
+    override val   id: Int,
+    override val name: String,
+    override val  age: Int,
+    override val salary: Int
 ): Worker(
     id = id,
     name = name,
@@ -13,8 +13,8 @@ class Assistant(
     salary = salary
 ), Cleaner, Supplier {
 
-    override fun copy(salary: Int,age: Int): Assistant {
-        return Assistant(this.id, this.name, age, salary)
+    override fun copy(id: Int, name: String, age: Int, salary: Int, position: Position): Worker {
+        return Contador(id = id, name = name, age = age, salary = salary)
     }
 
     override fun work() {

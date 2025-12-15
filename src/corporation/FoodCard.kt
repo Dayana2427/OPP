@@ -1,13 +1,8 @@
 package corporation
 
-class FoodCard (
-    name: String,
-    brand: String,
-    price: Int,
+data class FoodCard (
+    override val name: String,
+    override val brand: String,
+    override val price: Int,
     val caloric: Int
-): ProductCard(name = name, brand = brand, price = price, ProductType.FOOD) {
-
-    override fun toString(): String {
-        return "Nombre: $name Marca: $brand Precio: $price Tipo de producto: ${productType.title} Calorias: $caloric \n"
-    }
-}
+): ProductCard(name = name, brand = brand, price = price, ProductType.FOOD)

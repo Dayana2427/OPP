@@ -10,28 +10,27 @@ object WorkersRepository {
         get() = _workers.toList()
 
     fun registerNewEmployee(newWorker: Worker){
-        for (worker in workers){
-            if (worker == newWorker){
-                return
-            }
-        }
         _workers.add(newWorker)
     }
 
     fun changeAge(id: Int, age: Int){
-        for ((index, worker) in _workers.withIndex()){
+        for (worker in _workers){
             if (worker.id == id){
                 val newWorker = worker.copy(age = age)
-                _workers[index] = newWorker
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }
 
     fun changeSalary(id: Int, salary: Int){
-        for ((index, worker) in _workers.withIndex()){
+        for (worker in _workers){
             if (worker.id == id){
                 val newWorker = worker.copy(salary = salary)
-                _workers[index] = newWorker
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }
@@ -57,9 +56,9 @@ object WorkersRepository {
         fileWorkers.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.position}%${worker.salary}\n")
     }
 
-    private fun loadAllEmployees(): MutableList<Worker>{
+    private fun loadAllEmployees(): MutableSet <Worker>{
         println("loadAllEmployees")
-        val employees = mutableListOf<Worker>()
+        val employees = mutableSetOf<Worker>()
 
          if (!fileWorkers.exists()) fileWorkers.createNewFile()
 

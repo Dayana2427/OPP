@@ -1,12 +1,10 @@
 package corporation
 
-import java.io.File
-
-class Contador (
-    id: Int,
-    name: String,
-    age: Int,
-    salary: Int
+data class Contador (
+    override val id: Int,
+    override val name: String,
+    override val age: Int,
+    override val salary: Int
 ): Worker(
     id,
     name,
@@ -29,7 +27,7 @@ class Contador (
     override fun work() {
         val codeType = CodeType.entries
         while (true) {
-            println("Ingrese el código: ")
+            println("\nIngrese el código: ")
             for ((index, code) in codeType.withIndex()){
                 print("$index - ${code.title}\n")
             }
@@ -98,8 +96,8 @@ class Contador (
         workersRepository.registerNewEmployee(worker)
     }
 
-    override fun copy(salary: Int, age: Int): Contador {
-        return Contador(this.id, this.name, age, salary)
+    override fun copy(id: Int, name: String, age: Int, salary: Int, position: Position): Worker {
+        return Contador(id = id, name = name, age = age, salary = salary)
     }
 
     private fun fireEmployee(){
