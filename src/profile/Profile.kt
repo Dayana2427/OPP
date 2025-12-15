@@ -1,25 +1,11 @@
 package profile
 
 fun main() {
-    print("Ingrese su nombre 1: ")
-    val name =  readln()
-    print("Ingrese su apellido: ")
-    val lastName = readln()
-    print("Ingrese su edad 1: ")
-    val age = readln().toInt()
-    print("Ingrese su altura 1: ")
-    val height = readln().toFloat()
-    print("Ingrese su peso 1: ")
-    val weight = readln().toInt()
-    val person = Person(name = name, lastName  = lastName, age = age, height = height, weight = weight)
-
-    print(person.fullName)
-
-    person.age = age
-
-    person.printInfo()
-
-    person.age = 0
-
-    person.sayHello()
+    val person1 = Person("Nick", "Smith", 167, 68)
+    val person2 = Person("Nick", "Smith", 167, 68)
+    val person3 = person1.copy()
+    val people = setOf(person1, person2, person3)
+    for (person in people){
+        println(person)
+    }
 }

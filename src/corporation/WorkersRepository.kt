@@ -9,8 +9,13 @@ object WorkersRepository {
     val workers
         get() = _workers.toList()
 
-    fun registerNewEmployee(worker: Worker){
-        _workers.add(worker)
+    fun registerNewEmployee(newWorker: Worker){
+        for (worker in workers){
+            if (worker == newWorker){
+                return
+            }
+        }
+        _workers.add(newWorker)
     }
 
     fun changeAge(id: Int, age: Int){
@@ -49,7 +54,7 @@ object WorkersRepository {
     }
 
     private fun saveWorkerToFile(worker: Worker){
-        fileWorkers.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.salary}%${worker.position}\n")
+        fileWorkers.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.position}%${worker.salary}\n")
     }
 
     private fun loadAllEmployees(): MutableList<Worker>{
