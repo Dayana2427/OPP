@@ -13,6 +13,23 @@ object WorkersRepository {
         _workers.add(newWorker)
     }
 
+    fun findAssistant(): Assistant?{
+        for (worker in _workers){
+            if (worker is Assistant){
+                return worker
+            }
+        }
+        return null
+    }
+
+    fun findDirector(): Director? {
+        for (worker in _workers){
+            if (worker is Director)
+                return worker
+        }
+        return null
+    }
+
     fun changeAge(id: Int, age: Int){
         for (worker in _workers){
             if (worker.id == id){
